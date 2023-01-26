@@ -11,8 +11,12 @@ Facial Emotion detector coded from scratch using PyTorch and OpenCV.
     - Preprocessing: OpenCV
     - Frame Facial Detector: Haar Cascade Frontal Face Detector
 
-Sample Realtime Detection:
+Results on the Test Data:
 
-![Happy Face](sample_images/happy_face.jpeg)
+<img src="sample_images/results.jpeg" alt="Results" width="300"/>
 
-![Neutral Face](sample_images/neutral_face.jpeg)
+Sample Realtime Detection off WebCam:
+
+<img src="sample_images/happy_face.jpeg" alt="Happy Face" height="300" width="400"/>
+
+<img src="sample_images/neutral_face.jpeg" alt="Neutral Face" height="300" width="400"/>
