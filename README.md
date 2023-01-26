@@ -13,7 +13,7 @@ Facial Emotion detector coded from scratch using PyTorch and OpenCV.
 
 Results on the Test Data:
 
-<img src="sample_images/results.jpeg" alt="Results" width="300"/>
+<img src="sample_images/results.jpeg" alt="Results" width="400"/>
 
 Sample Realtime Detection off WebCam:
 
