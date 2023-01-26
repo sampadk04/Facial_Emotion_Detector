@@ -17,6 +17,6 @@ Results on the Test Data:
 
 Sample Realtime Detection off WebCam:
 
-<img src="sample_images/happy_face.jpeg" alt="Happy Face" height="300" width="400"/>
+<img src="sample_images/happy_face.jpeg" alt="Happy Face" height="300" width="450"/>
 
-<img src="sample_images/neutral_face.jpeg" alt="Neutral Face" height="300" width="400"/>
+<img src="sample_images/neutral_face.jpeg" alt="Neutral Face" height="300" width="450"/>
