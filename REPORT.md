@@ -51,5 +51,45 @@ Both models were trained for 32 epochs. The final accuracy on the test dataset i
 
 *Note: The transfer learning approach yielded slightly better results compared to the custom implementation.*
 
-## 5. Conclusion
-The project successfully demonstrates facial emotion detection using Deep Learning. While the custom ResNet-18 provided a solid baseline, leveraging transfer learning with a pre-trained ResNet-18 model resulted in improved accuracy. Further improvements could be achieved by fine-tuning hyperparameters, using deeper architectures, or employing more advanced data augmentation techniques.
+## 5. Realtime Emotion Detection
+
+After training the models, realtime emotion detection was implemented to detect and classify facial emotions from a live webcam feed. The implementation uses the following approach:
+
+### 5.1 Face Detection
+- **Haar Cascade Classifier**: OpenCV's `haarcascade_frontalface_default.xml` is used to detect faces in the video frames.
+- **Detection Parameters**: 
+  - `scaleFactor=1.1`: Image pyramid scale factor for multi-scale detection.
+  - `minNeighbors=5`: Minimum number of neighboring rectangles to keep a detection.
+
+### 5.2 Frame Preprocessing Pipeline
+For each detected face, the following preprocessing steps are applied:
+1. **Face Extraction**: The detected face region is cropped from the grayscale frame with additional padding (`y-70:y+h+10, x:x+w`).
+2. **Color Conversion**: Grayscale image is converted to 3-channel BGR format using `cv2.cvtColor()` to match the model's input requirements.
+3. **Resizing**: The cropped face is resized to 48×48 pixels to match the training data dimensions.
+4. **Tensor Transformation**: The image is converted to a PyTorch tensor and normalized.
+5. **Batch Reshaping**: The tensor is reshaped from `(C, H, W)` to `(1, C, H, W)` for batch processing.
+6. **GPU Transfer**: The tensor is moved to the GPU device for faster inference.
+
+### 5.3 Emotion Prediction
+The trained model performs inference on the preprocessed frame:
+- The model outputs class probabilities for all 7 emotion categories.
+- `torch.max()` is used to select the emotion with the highest confidence.
+- The predicted emotion label is retrieved from the `class_names` list.
+
+### 5.4 Temporal Smoothing
+To reduce prediction jitter and create a smoother user experience:
+- **Moving Window Averaging**: A moving window of size 24 frames stores recent predictions.
+- **Voting Mechanism**: The most frequent emotion in the window is selected using `np.bincount()` and `np.argmax()`.
+- **Window Update**: After each prediction, the window is rolled left using `np.roll()` and the new prediction is added.
+
+### 5.5 Visualization
+The live feed displays:
+- A bounding box around the detected face.
+- The current predicted emotion as text overlay using `cv2.putText()`.
+- A grayscale video feed for better face detection performance.
+
+### 5.6 Exit Condition
+The realtime detection loop runs continuously until the user presses the 'q' key, at which point the webcam connection is released and all windows are closed.
+
+## 6. Conclusion
+The project successfully demonstrates facial emotion detection using Deep Learning. While the custom ResNet-18 provided a solid baseline, leveraging transfer learning with a pre-trained ResNet-18 model resulted in improved accuracy. The realtime detection implementation extends the trained model's capabilities to process live video streams, making it practical for real-world applications. Further improvements could be achieved by fine-tuning hyperparameters, using deeper architectures, or employing more advanced data augmentation techniques.
