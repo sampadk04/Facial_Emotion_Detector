@@ -2,6 +2,8 @@
 
 A facial emotion detection system built from scratch using PyTorch and OpenCV.
 
+![Project Preview](project-asset.png)
+
 ## Emotion Detector Overview
 
 ### Data
