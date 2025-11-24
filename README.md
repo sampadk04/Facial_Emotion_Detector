@@ -15,6 +15,40 @@ A facial emotion detection system built from scratch using PyTorch and OpenCV.
 - **Preprocessing**: OpenCV
 - **Frame Facial Detection**: Haar Cascade Frontal Face Detector
 
+## Installation
+
+1.  Clone the repository:
+    ```bash
+    git clone <repository_url>
+    cd Facial_Emotion_Detector
+    ```
+
+2.  Install the required dependencies:
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+## Usage
+
+1.  Open the Jupyter Notebook:
+    ```bash
+    jupyter notebook Facial_Emotion_Detection.ipynb
+    ```
+
+2.  Run the cells to train the models or use the pre-trained weights (if available) for detection.
+
+## Project Structure
+
+```
+Facial_Emotion_Detector/
+├── data/                       # Dataset directory
+├── models/                     # Saved models
+├── sample_images/              # Images for README
+├── Facial_Emotion_Detection.ipynb # Main project notebook
+├── requirements.txt            # Python dependencies
+└── README.md                   # Project documentation
+```
+
 ## Results on the Test Data
 
 ![Results](sample_images/results.jpeg)
